@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)file:///C:/Users/Lasse/Documents/New%20project/index.html -->
+<html lang="da"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Politi MDT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com/">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+  <link href="./Politi MDT_files/css2" rel="stylesheet">
+  <link rel="stylesheet" href="./Politi MDT_files/styles.css">
+</head>
+<body>
+  <div class="screen-stack" id="screenStack">
+    <section class="auth-screen" id="loginScreen">
+      <div class="auth-card login-card">
+        <div class="auth-header">
+          <div class="badge" aria-hidden="true">
+            <div class="badge-crown"></div>
+            <div class="badge-core">DK</div>
+          </div>
+          <p class="auth-kicker">Politi MDT</p>
+          <h1>Mobil Data Terminal</h1>
+          <p class="auth-subline">Danmark politioperativ platform</p>
+        </div>
+
+        <div class="auth-divider"></div>
+
+        <form class="auth-form" id="loginForm">
+          <label class="field">
+            <span>Brugernavn (email)</span>
+            <input type="email" id="loginEmail" name="email" placeholder="betjent@politi.dk" required="">
+          </label>
+
+          <label class="field">
+            <span>Adgangskode</span>
+            <input type="password" id="loginPassword" name="password" placeholder="********" required="">
+          </label>
+
+          <button class="primary-btn" type="submit">Log ind</button>
+        </form>
+
+        <footer class="auth-footer">
+          <p>Ingen konto endnu?</p>
+          <button class="ghost-btn" type="button" id="openRegisterButton">Registrer</button>
+        </footer>
+      </div>
+    </section>
+
+    <section class="auth-screen hidden" id="registerScreen">
+      <div class="auth-card register-card">
+        <div class="auth-header">
+          <div class="badge" aria-hidden="true">
+            <div class="badge-crown"></div>
+            <div class="badge-core">DK</div>
+          </div>
+          <p class="auth-kicker">Opret konto</p>
+          <h1>Dansk Politi MDT</h1>
+        </div>
+
+        <div class="auth-divider"></div>
+
+        <div class="verify-banner">
+          <div class="verify-icon">+</div>
+          <div>
+            <strong>Ikke verificeret</strong>
+            <p>Skal verificeres med Discord</p>
+          </div>
+        </div>
+
+        <form class="register-form" id="registerForm">
+          <div class="section-label">Login oplysninger</div>
+          <div class="field-row">
+            <label class="field">
+              <span>Email</span>
+              <input type="email" id="registerEmail" placeholder="betjent@politi.dk" required="">
+            </label>
+            <label class="field">
+              <span>Adgangskode (min. 6)</span>
+              <input type="password" id="registerPassword" placeholder="********" minlength="6" required="">
+            </label>
+          </div>
+
+          <div class="section-label">Tjenesteoplysninger</div>
+          <div class="field-row">
+            <label class="field">
+              <span>Fornavn</span>
+              <input type="text" id="firstName" placeholder="Fornavn" required="">
+            </label>
+            <label class="field">
+              <span>Efternavn</span>
+              <input type="text" id="lastName" placeholder="Efternavn" required="">
+            </label>
+          </div>
+
+          <div class="field-row field-row-tight">
+            <label class="field">
+              <span>P-nummer</span>
+              <input type="text" id="badgeNumber" placeholder="P11-37" required="">
+            </label>
+          </div>
+
+          <div class="section-label">Rang</div>
+          <div class="rank-grid" id="rankGrid">
+            <button class="chip" type="button" data-rank="Betjent">Betjent</button>
+            <button class="chip" type="button" data-rank="Overbetjent">Overbetjent</button>
+            <button class="chip" type="button" data-rank="Kriminalbetjent">Kriminalbetjent</button>
+            <button class="chip" type="button" data-rank="Sergeant">Sergeant</button>
+            <button class="chip" type="button" data-rank="Inspektoer">Inspektoer</button>
+            <button class="chip" type="button" data-rank="Kommissaer">Kommissaer</button>
+          </div>
+
+          <div class="section-label">Afdeling</div>
+          <label class="field">
+            <select id="departmentSelect">
+              <option value="" selected="" disabled="">Vaelg afdeling</option>
+              <option>Patrulje</option>
+              <option>Efterforskning</option>
+              <option>Ledelse</option>
+            </select>
+          </label>
+
+          <p class="helper-text">For at oprette konto skal du verificere din Discord-rolle en gang.</p>
+
+          <div class="register-actions">
+            <button class="primary-btn" type="button" id="verifyButton">Verificer med Discord</button>
+            <button class="ghost-btn" type="button" id="backToLoginButton">Tilbage</button>
+            <button class="primary-btn accent-red" type="submit">Opret konto</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="app hidden" id="mdtApp">
+      <header class="topbar">
+        <div class="brand">
+          <div class="mini-badge">DK</div>
+          <span>Politi MDT</span>
+        </div>
+
+        <nav class="topnav">
+          <button class="nav-item active" type="button" data-view="dashboard">Dashboard</button>
+          <button class="nav-item" type="button" data-view="flaadestyring">Flaadestyring</button>
+          <button class="nav-item" type="button" data-view="opslag">Opslag</button>
+          <button class="nav-item" type="button" data-view="boeder">Boeder</button>
+          <button class="nav-item" type="button" data-view="anholdelser">Anholdelser</button>
+          <button class="nav-item" type="button" data-view="rapporter">Rapporter</button>
+          <button class="nav-item" type="button" data-view="retssager">Retssager</button>
+        </nav>
+
+        <div class="topbar-right">
+          <div class="clock-box" id="clockBox">20.25.08</div>
+          <select class="status-pill status-select" id="dutyStatusSelect">
+            <option value="On Duty">On Duty</option>
+            <option value="Pause">Pause</option>
+            <option value="Out of Service">Out of Service</option>
+            <option value="Offline">Offline</option>
+          </select>
+          <button class="profile-pill" type="button" id="logoutButton">KB</button>
+        </div>
+      </header>
+
+      <main class="app-content">
+        <section class="view active" id="view-dashboard">
+          <div class="stats-grid">
+            <article class="stat-card">
+              <strong>17</strong>
+              <span>Aktive enheder</span>
+            </article>
+            <article class="stat-card">
+              <strong class="green">0</strong>
+              <span>Tilgaengelig</span>
+            </article>
+            <article class="stat-card">
+              <strong class="yellow">2</strong>
+              <span>Optaget</span>
+            </article>
+            <article class="stat-card">
+              <strong>0</strong>
+              <span>Eftersaettelse</span>
+            </article>
+          </div>
+
+          <div class="content-grid">
+            <section class="panel-box">
+              <div class="panel-title">Aktive enheder</div>
+              <div class="unit-list" id="unitList">
+    <article class="unit-item ">
+      <div class="unit-top">
+        <div>
+          <div class="unit-name">Torben Mortensen</div>
+          <div class="unit-meta">Betjent - Patrulje</div>
+        </div>
+        <div>
+          <div class="unit-code">P11-31</div>
+          <div class="unit-status">Optaget</div>
+        </div>
+      </div>
+    </article>
+  
+    <article class="unit-item ">
+      <div class="unit-top">
+        <div>
+          <div class="unit-name">Poul Erik Hansen</div>
+          <div class="unit-meta">Kommissaer - Patrulje</div>
+        </div>
+        <div>
+          <div class="unit-code">P11-14</div>
+          <div class="unit-status">Optaget</div>
+        </div>
+      </div>
+    </article>
+  
+    <article class="unit-item ">
+      <div class="unit-top">
+        <div>
+          <div class="unit-name">Jakob Jensen</div>
+          <div class="unit-meta">Betjent - Ledelse</div>
+        </div>
+        <div>
+          <div class="unit-code">P11-06</div>
+          <div class="unit-status">Tilgaengelig</div>
+        </div>
+      </div>
+    </article>
+  
+    <article class="unit-item ">
+      <div class="unit-top">
+        <div>
+          <div class="unit-name">Oliver Skov</div>
+          <div class="unit-meta">Betjent - Patrulje</div>
+        </div>
+        <div>
+          <div class="unit-code">P11-19</div>
+          <div class="unit-status">Tilgaengelig</div>
+        </div>
+      </div>
+    </article>
+  
+    <article class="unit-item ">
+      <div class="unit-top">
+        <div>
+          <div class="unit-name">Frederik Soerensen</div>
+          <div class="unit-meta">Betjent - Patrulje</div>
+        </div>
+        <div>
+          <div class="unit-code">P11-33</div>
+          <div class="unit-status">Tilgaengelig</div>
+        </div>
+      </div>
+    </article>
+  
+    <article class="unit-item ">
+      <div class="unit-top">
+        <div>
+          <div class="unit-name">Sebastian Holm</div>
+          <div class="unit-meta">Betjent - Patrulje</div>
+        </div>
+        <div>
+          <div class="unit-code">P11-42</div>
+          <div class="unit-status">Tilgaengelig</div>
+        </div>
+      </div>
+    </article>
+  </div>
+            </section>
+
+            <section class="panel-box side-box">
+              <div class="panel-title">Seneste noedopkald</div>
+              <div class="call-list" id="callList">
+    <article class="call-item">
+      <strong>Vold ved havnen</strong>
+      <div class="record-copy">2 patruljer sendt til Havnegade 14</div>
+      <div class="inline-badge" style="margin-top:10px;">11.31</div>
+    </article>
+  
+    <article class="call-item">
+      <strong>Mistaenkelig bil</strong>
+      <div class="record-copy">Sort Sultan observeret ved tunnelindkoersel</div>
+      <div class="inline-badge" style="margin-top:10px;">11.27</div>
+    </article>
+  
+    <article class="call-item">
+      <strong>Alarm fra bank</strong>
+      <div class="record-copy">Overfaldsalarm udloest i centrum</div>
+      <div class="inline-badge" style="margin-top:10px;">11.21</div>
+    </article>
+  </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-flaadestyring">
+          <div class="split-layout">
+            <section class="panel-box sidebar-box">
+              <div class="panel-headline">
+                <div class="panel-title">Flaadestyring</div>
+                <div class="panel-actions">
+                  <button class="icon-btn" type="button" id="refreshFleetButton">R</button>
+                  <button class="primary-mini-btn" type="button" id="newFleetButton">+ Ny</button>
+                </div>
+              </div>
+              <div class="record-list" id="fleetList">
+    <article class="record-item " data-fleet-id="F-001">
+      <div class="record-row">
+        <div>
+          <div class="record-title">Kristian Kronborg</div>
+          <div class="record-meta">Bravo - Bravo-2</div>
+          <div class="record-copy">Vapid Scout</div>
+        </div>
+        <div>
+          <div class="fleet-status">Ledig til makker</div>
+        </div>
+      </div>
+    </article>
+  
+    <article class="record-item " data-fleet-id="F-002">
+      <div class="record-row">
+        <div>
+          <div class="record-title">Sebastian Holm</div>
+          <div class="record-meta">MC - MC-1</div>
+          <div class="record-copy">Police Bike</div>
+        </div>
+        <div>
+          <div class="fleet-status">Aktiv patrulje</div>
+        </div>
+      </div>
+    </article>
+  </div>
+            </section>
+
+            <section class="panel-box detail-box" id="fleetDetailBox">
+    <div class="panel-title">Enhedsdetaljer</div>
+    <form class="editor-form" id="fleetForm">
+      <div class="detail-grid">
+        <label class="field">
+          <span>RP-navn</span>
+          <input type="text" name="rpName" value="" placeholder="Dit RP-navn" required="">
+        </label>
+        <label class="field">
+          <span>Enhedstype</span>
+          <input type="text" name="unitType" value="" placeholder="Bravo, MC, Civil, AKS, Romeo" required="">
+        </label>
+        <label class="field">
+          <span>Kaldesignal</span>
+          <input type="text" name="callsign" value="" placeholder="Bravo-1">
+        </label>
+        <label class="field">
+          <span>Koeretoej</span>
+          <input type="text" name="vehicle" value="" placeholder="Buffalo STX, MC, Civil bil">
+        </label>
+        <label class="field">
+          <span>Makker</span>
+          <input type="text" name="partner" value="" placeholder="Navn paa makker">
+        </label>
+        <label class="field">
+          <span>Status</span>
+          <input type="text" name="status" value="" placeholder="On Duty, Pause, Out of Service, Offline">
+        </label>
+      </div>
+      <label class="field textarea-field">
+        <span>Noter</span>
+        <textarea name="notes" placeholder="Skriv noter her. Fx: jeg mangler en makker at koere med"></textarea>
+      </label>
+      <div class="detail-actions">
+        <button class="primary-mini-btn" type="submit">Gem enhed</button>
+      </div>
+    </form>
+  </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-opslag">
+          <div class="split-layout narrow-left">
+            <section class="panel-box sidebar-box">
+              <div class="panel-title">Opslag</div>
+              <form class="search-stack" id="searchForm">
+                <input class="search-input" type="text" id="searchInput" placeholder="Indtast CPR-nummer...">
+                <button class="primary-btn" type="submit">Soeg</button>
+              </form>
+              <p class="helper-text">Format: DDMMAAAA-XXXX</p>
+            </section>
+
+            <section class="panel-box detail-box" id="searchResultBox">
+    <div class="panel-title">Personopslag</div>
+    <div class="detail-card">
+      <h2>Nyt opslag</h2>
+      <div class="detail-grid">
+        <div class="detail-box-card">
+          <span>CPR</span>
+          <strong>-</strong>
+        </div>
+        <div class="detail-box-card">
+          <span>Alder</span>
+          <strong>-</strong>
+        </div>
+        <div class="detail-box-card">
+          <span>Status</span>
+          <strong>-</strong>
+        </div>
+        <div class="detail-box-card">
+          <span>Koerekort</span>
+          <strong>-</strong>
+        </div>
+      </div>
+      <div class="detail-note">
+        <strong>Adresse:</strong> -<br><br>
+        <strong>Notat:</strong> Ingen data valgt endnu. Skriv et CPR-nummer og tryk soeg.
+      </div>
+      <form class="stack-form" id="searchNoteForm">
+        <label class="field">
+          <span>Tilfoej notat</span>
+          <textarea placeholder="Skriv patruljenotat her..."></textarea>
+        </label>
+        <div class="detail-actions">
+          <button class="primary-mini-btn" type="submit">Gem notat</button>
+        </div>
+      </form>
+    </div>
+  </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-boeder">
+          <div class="split-layout">
+            <section class="panel-box sidebar-box">
+              <div class="panel-headline">
+                <div class="panel-title">Boeder</div>
+                <div class="panel-actions">
+                  <button class="icon-btn" type="button" id="refreshBoeder">R</button>
+                  <button class="primary-mini-btn" type="button" id="newBoedeButton">+ Ny</button>
+                </div>
+              </div>
+              <div class="record-list" id="fineList">
+    <article class="record-item " data-fine-id="B-217358">
+      <div class="record-row">
+        <div>
+          <div class="record-title">Ahmed Guldhammer</div>
+          <div class="record-meta">B-217358 - Betjent Sebastian Holm [P11-42]</div>
+          <div class="record-meta">12.4.2026</div>
+          <div class="record-copy">Paragraf 17 stk. 5 - Udoeget koerekort</div>
+        </div>
+        <div>
+          <div class="record-price">Kr. 237</div>
+          <div class="status-tag ">Ubetalt</div>
+        </div>
+      </div>
+    </article>
+  
+    <article class="record-item " data-fine-id="B-513347">
+      <div class="record-row">
+        <div>
+          <div class="record-title">Noah Gade</div>
+          <div class="record-meta">B-513347 - Betjent Sebastian Holm [P11-42]</div>
+          <div class="record-meta">12.4.2026</div>
+          <div class="record-copy">Paragraf 14 stk. 1 - Hastighedsovertradelse</div>
+        </div>
+        <div>
+          <div class="record-price">Kr. 260</div>
+          <div class="status-tag ">Ubetalt</div>
+        </div>
+      </div>
+    </article>
+  </div>
+            </section>
+
+            <section class="panel-box detail-box" id="fineDetailBox">
+    <div class="panel-title">Boedeformular</div>
+    <form class="editor-form" id="fineForm">
+      <div class="detail-grid">
+        <label class="field">
+          <span>Navn</span>
+          <input type="text" name="name" value="" required="">
+        </label>
+        <label class="field">
+          <span>Alder</span>
+          <input type="text" name="age" value="" placeholder="24" required="">
+        </label>
+        <label class="field">
+          <span>Sigtelse</span>
+          <input type="text" name="charge" value="" required="">
+        </label>
+        <label class="field">
+          <span>Belob</span>
+          <input type="text" name="amount" value="" placeholder="500" required="">
+        </label>
+        <label class="field">
+          <span>Vidner</span>
+          <input type="text" name="witnesses" value="" placeholder="Navne eller patruljer">
+        </label>
+        <label class="field">
+          <span>Dato</span>
+          <input type="text" name="date" value="" placeholder="26.4.2026" required="">
+        </label>
+        <label class="field">
+          <span>Betjent</span>
+          <input type="text" name="officer" value="" placeholder="Betjent navn" required="">
+        </label>
+        <div class="detail-box-card">
+          <span>Status</span>
+          <strong>Kladde</strong>
+        </div>
+      </div>
+      <label class="field textarea-field">
+        <span>Rapport / notat</span>
+        <textarea name="notes" placeholder="Skriv forklaring paa boeden..."></textarea>
+      </label>
+      <div class="detail-actions">
+        <button class="primary-mini-btn" type="submit">Gem boede</button>
+        <button class="icon-btn" type="button" id="markFinePaidButton">Betalt</button>
+      </div>
+    </form>
+  </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-anholdelser">
+          <div class="split-layout">
+            <section class="panel-box sidebar-box">
+              <div class="panel-headline">
+                <div class="panel-title">Anholdelser</div>
+                <div class="panel-actions">
+                  <input class="mini-input" type="text" placeholder="Soeg navn...">
+                  <button class="icon-btn" type="button">R</button>
+                  <button class="danger-mini-btn" type="button" id="newArrestButton">+ Ny</button>
+                </div>
+              </div>
+              <div class="record-list arrest-list" id="arrestList">
+    <article class="record-item " data-arrest-id="A-20260412-9451">
+      <div class="record-layout">
+        <div class="record-avatar">M</div>
+        <div>
+          <div class="record-title">Mikkel Frederiksen</div>
+          <div class="record-meta">A-20260412-9451 - 12.4.2026</div>
+          <div class="record-copy">Paragraf 11 stk. 9 - Mord paa politibetjent</div>
+        </div>
+        <div class="status-tag red">Aktiv</div>
+      </div>
+    </article>
+  
+    <article class="record-item " data-arrest-id="A-20260412-7054">
+      <div class="record-layout">
+        <div class="record-avatar">M</div>
+        <div>
+          <div class="record-title">Mathias Klausen</div>
+          <div class="record-meta">A-20260412-7054 - 12.4.2026</div>
+          <div class="record-copy">Paragraf 11 stk. 4 - Flugt fra politiet</div>
+        </div>
+        <div class="status-tag red">Aktiv</div>
+      </div>
+    </article>
+  </div>
+            </section>
+
+            <section class="panel-box detail-box" id="arrestDetailBox">
+    <div class="panel-title">Anholdelsesformular</div>
+    <form class="editor-form" id="arrestForm">
+      <div class="detail-grid">
+        <label class="field">
+          <span>Navn</span>
+          <input type="text" name="name" value="" required="">
+        </label>
+        <label class="field">
+          <span>Alder</span>
+          <input type="text" name="age" value="" required="">
+        </label>
+        <label class="field">
+          <span>Sigtelse</span>
+          <input type="text" name="charge" value="" required="">
+        </label>
+        <label class="field">
+          <span>Status</span>
+          <input type="text" name="status" value="" placeholder="Aktiv" required="">
+        </label>
+        <label class="field">
+          <span>Vidner</span>
+          <input type="text" name="witnesses" value="">
+        </label>
+        <label class="field">
+          <span>Dato</span>
+          <input type="text" name="date" value="" placeholder="26.4.2026" required="">
+        </label>
+      </div>
+      <label class="field textarea-field">
+        <span>Betjentens rapport</span>
+        <textarea name="notes" placeholder="Skriv anholdelsesrapport her..."></textarea>
+      </label>
+      <div class="detail-actions">
+        <button class="danger-mini-btn" type="submit">Gem anholdelse</button>
+        <button class="primary-mini-btn" type="button" id="sendToReportButton">Til rapport</button>
+      </div>
+    </form>
+  </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-rapporter">
+          <div class="split-layout">
+            <section class="panel-box sidebar-box">
+              <div class="panel-headline">
+                <div class="panel-title">Rapporter</div>
+                <div class="panel-actions">
+                  <button class="icon-btn" type="button">R</button>
+                  <button class="primary-mini-btn" type="button" id="newReportButton">+ Ny</button>
+                </div>
+              </div>
+              <div class="record-list" id="reportList">
+    <article class="record-item " data-report-id="R-20260426-001">
+      <div class="record-row">
+        <div>
+          <div class="record-title">Patruljerapport</div>
+          <div class="record-meta">Kristian Kronborg - 26.4.2026</div>
+          <div class="record-copy">Rutinekontrol</div>
+        </div>
+        <div class="inline-badge">R-20260426-001</div>
+      </div>
+    </article>
+  </div>
+            </section>
+
+            <section class="panel-box detail-box" id="reportDetailBox">
+    <div class="panel-title">Rapportdetaljer</div>
+    <form class="editor-form" id="reportForm">
+      <input type="hidden" name="id" value="">
+      <div class="detail-grid">
+        <label class="field">
+          <span>Rapporttype</span>
+          <input type="text" name="title" value="" required="">
+        </label>
+        <label class="field">
+          <span>Navn</span>
+          <input type="text" name="name" value="" required="">
+        </label>
+        <label class="field">
+          <span>Alder</span>
+          <input type="text" name="age" value="">
+        </label>
+        <label class="field">
+          <span>Sigtelse</span>
+          <input type="text" name="charge" value="" required="">
+        </label>
+        <label class="field">
+          <span>Vidner</span>
+          <input type="text" name="witnesses" value="">
+        </label>
+        <label class="field">
+          <span>Dato</span>
+          <input type="text" name="date" value="" placeholder="26.4.2026" required="">
+        </label>
+        <label class="field">
+          <span>Betjent</span>
+          <input type="text" name="officer" value="" placeholder="Betjent navn" required="">
+        </label>
+      </div>
+      <label class="field textarea-field">
+        <span>Rapporttekst</span>
+        <textarea name="text" placeholder="Skriv hele rapporten her..."></textarea>
+      </label>
+      <div class="detail-actions">
+        <button class="primary-mini-btn" type="submit">Gem rapport</button>
+      </div>
+    </form>
+  </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-retssager">
+          <div class="split-layout">
+            <section class="panel-box sidebar-box">
+              <div class="panel-headline">
+                <div class="panel-title">Retssager</div>
+                <div class="panel-actions">
+                  <button class="icon-btn" type="button">R</button>
+                </div>
+              </div>
+              <div class="record-list case-list" id="caseList">
+    <article class="record-item " data-case-id="S-20260412-8746">
+      <div class="record-row">
+        <div>
+          <div class="record-meta">S-20260412-8746</div>
+          <div class="record-title">Mikkel Frederiksen</div>
+          <div class="record-copy">Paragraf 11 stk. 9 - Mord paa politibetjent</div>
+          <div class="record-meta">12.4.2026</div>
+        </div>
+        <div class="status-tag">Afventer</div>
+      </div>
+    </article>
+  </div>
+            </section>
+
+            <section class="panel-box detail-box" id="caseDetailBox">
+    <div class="panel-title">Sagsdetaljer</div>
+    <form class="editor-form" id="caseForm">
+      <input type="hidden" name="id" value="">
+      <div class="detail-grid">
+        <label class="field">
+          <span>Navn</span>
+          <input type="text" name="name" value="" required="">
+        </label>
+        <label class="field">
+          <span>Alder</span>
+          <input type="text" name="age" value="">
+        </label>
+        <label class="field">
+          <span>Tiltale</span>
+          <input type="text" name="title" value="" required="">
+        </label>
+        <label class="field">
+          <span>Status</span>
+          <input type="text" name="status" value="" placeholder="Afventer" required="">
+        </label>
+        <label class="field">
+          <span>Anklager</span>
+          <input type="text" name="prosecutor" value="" required="">
+        </label>
+        <label class="field">
+          <span>Forsvarer</span>
+          <input type="text" name="defender" value="">
+        </label>
+        <label class="field">
+          <span>Vidner</span>
+          <input type="text" name="witnesses" value="">
+        </label>
+        <label class="field">
+          <span>Dato</span>
+          <input type="text" name="date" value="" placeholder="26.4.2026" required="">
+        </label>
+      </div>
+      <label class="field textarea-field">
+        <span>Sagsresume</span>
+        <textarea name="note" placeholder="Skriv sagen her..."></textarea>
+      </label>
+      <div class="detail-actions">
+        <button class="primary-mini-btn" type="submit">Gem sag</button>
+      </div>
+    </form>
+  </section>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <script src="./Politi MDT_files/script.js"></script>
+
+
+</body></html>
